@@ -12,7 +12,8 @@ if __name__ == '__main__':
     is_match_reg(pat, "2020/08/23")
     is_match_reg(pat, "Aug 23/2020")
     print("findall 查找所有匹配字符串")
-    print(pat.findall("today is 2020/08/23, tomorrow is 2020/08/24"))
+    multi_date = "today is 2020/08/23, tomorrow is 2020/08/24"
+    print(pat.findall(multi_date))
     print("分组")
     pat = re.compile(r'(\d+)/(\d+)/(\d+)')
     match = pat.match("2020/08/23")
@@ -20,4 +21,6 @@ if __name__ == '__main__':
     print(match.groups())
     year, month, day = match.groups()
     print("{}-{}-{}".format(year, month, day))
-    
+    print("迭代方式返回匹配项")
+    for match in pat.finditer(multi_date):
+        print(match.groups())
